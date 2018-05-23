@@ -1,0 +1,38 @@
+group 'com.test.grpc'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    maven {
+        // The google mirror is less flaky than mavenCentral()
+        url "https://maven-central.storage-download.googleapis.com/repos/central/data/"
+    }
+    mavenLocal()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "4.7"
+}
+
+repositories {
+    maven {
+        // The google mirror is less flaky than mavenCentral()
+        url "https://maven-central.storage-download.googleapis.com/repos/central/data/"
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:2.0.2.RELEASE'
+    compile "com.google.protobuf:protobuf-java:3.3.0"
+    compile 'io.grpc:grpc-netty:1.11.0'
+    compile 'io.grpc:grpc-protobuf:1.11.0'
+    compile 'io.grpc:grpc-stub:1.11.0'
+}
